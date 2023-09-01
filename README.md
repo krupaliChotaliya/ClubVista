@@ -1,1 +1,1 @@
-Our project enables users to effortlessly discover, join, and manage clubs and their associated events with a seamless login experience. Empowering users to form their own clubs and organize events, fostering a vibrant community engagement platform.
+this website enables users to effortlessly discover, join, and manage clubs and their associated events with a seamless login experience. Empowering users to form their own clubs and organize events, fostering a vibrant community engagement platform.
