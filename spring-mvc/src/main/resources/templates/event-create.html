@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <title>event-create</title>
+  <div th:replace="layout :: common-css"></div>
+</head>
+<body>
+<div th:replace="layout::navbar"></div>
+<section th:fragment="create-form" class="container m-5">
+  <h1 class="text-center">Add new Event</h1>
+  <form th:action="@{/events/{clubId}(clubId=${clubId})}" method="post" th:object="${events}">
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" class="form-control" id="name" name="name" th:field="*{name}">
+      <p th:if="${#fields.hasErrors('name')}" class="text-bg-danger" th:errors="*{name}">name error</p>
+    </div>
+    <div class="form-group">
+      <label>Type</label>
+      <input type="text" class="form-control" id="type" name="type" th:field="*{type}" >
+      <p th:if="${#fields.hasErrors('type')}" class="text-bg-danger" th:errors="*{type}"></p>
+    </div>
+    <div class="form-group">
+      <label>photo url</label>
+      <input type="text" class="form-control" id="photourl" name="photourl" th:field="*{photourl}">
+      <p th:if="${#fields.hasErrors('photourl')}"  class="text-bg-danger" th:errors="*{photourl}"></p>
+    </div>
+    <div class="form-group">
+      <label>Start Time</label>
+      <input type="datetime-local" class="form-control" id="startTime" name="startTime" th:field="*{startTime}" >
+      <p th:if="${#fields.hasErrors('startTime')}" class="text-bg-danger" th:errors="*{startTime}"></p>
+    </div>
+    <div class="form-group">
+      <label>End Time</label>
+      <input type="datetime-local" class="form-control" id="endTime" name="endTime" th:field="*{endTime}" >
+      <p th:if="${#fields.hasErrors('endTime')}" class="text-bg-danger" th:errors="*{endTime}"></p>
+    </div>
+    <button type="submit" class="btn btn-primary m-3">Add Event</button>
+  </form>
+</section>
+<div th:replace="layout :: common-js"></div>
+</body>
+</html>
