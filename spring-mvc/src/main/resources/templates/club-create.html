@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>club-create</title>
+    <div th:replace="layout :: common-css"></div>
+</head>
+<body>
+<div th:replace="layout::navbar"></div>
+  <section th:fragment="create-form" class="container m-5">
+      <h1 class="text-center">Add new Club</h1>
+      <form th:action="@{/clubs/new}" method="post" th:object="${club}">
+          <div class="form-group">
+              <label>Title</label>
+              <input type="text" class="form-control" id="title" name="title" th:field="*{title}">
+              <p th:if="${#fields.hasErrors('title')}" class="text-bg-danger" th:errors="*{title}">name error</p>
+          </div>
+          <div class="form-group">
+              <label>content</label>
+              <input type="text" class="form-control" id="content" name="content" th:field="*{content}" >
+              <p th:if="${#fields.hasErrors('content')}" class="text-bg-danger" th:errors="*{content}"></p>
+          </div>
+          <div class="form-group">
+              <label>photo url</label>
+              <input type="text" class="form-control" id="photourl" name="photourl" th:field="*{photourl}">
+              <p th:if="${#fields.hasErrors('photourl')}"  class="text-bg-danger" th:errors="*{photourl}"></p>
+          </div>
+          <button type="submit" class="btn btn-primary m-3">Add</button>
+      </form>
+  </section>
+  <div th:replace="layout :: common-js"></div>
+</body>
+</html>

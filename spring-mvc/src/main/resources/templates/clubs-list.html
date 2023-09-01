@@ -1,0 +1,60 @@
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Running Clubs</title>
+    <div th:replace="layout :: common-css"></div>
+</head>
+<body class="d-flex flex-column h-100" layout:fragment="body">
+<main class="flex-shrink-0">
+    <!-- Navigation-->
+    <div th:replace="layout :: navbar">this is header</div>
+    <div th:if="${param.success}" class="alert alert-success alert-dismissible fade show" role="alert">
+        You are Registered successfully!!
+    </div>
+    <!-- Blog preview section-->
+    <section class="py-5">
+        <div class="container px-5 my-5">
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+                    <div class="text-center">
+                        <h2 class="fw-bolder">Find Running Clubs</h2>
+                        <p class="lead fw-normal text-muted mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing
+                            elit. Eaque fugit ratione dicta mollitia. Officiis ad.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row gx-5">
+                <div>
+                    <form th:action="@{/clubs/search}" class="form-inline my-2 my-lg-0 mb-3">
+                        <input name="query" class="form-control mr-sm-2 mb-5" type="search" placeholder="Search blog"
+                               aria-label="search">
+                    </form>
+                </div>
+                <div th:each="club :${clubs}" class="col-lg-4 mb-5">
+                    <div class="card h-100 shadow border-0">
+                        <img class="card-img-top" th:src="${club.photourl}" alt="..."/>
+                        <div class="card-body p-4">
+                            <div th:text="${club.title}" class="badge bg-primary bg-gradient rounded-pill mb-2">News
+                            </div>
+                            <p class="card-text mb-0" th:text="${club.content}">Some quick example text to build on the
+                                card title and make up the
+                                bulk of the card's content.</p>
+                            <a th:href="@{/clubs/{clubId}(clubId=${club.id})}" class="btn btn-dark mb-2 ">view</a>
+                            <div th:if="(${user}!=null) and (${user.id} == ${club.createdBy.id})">
+                            <a th:href="@{/clubs/{clubId}/edit(clubId=${club.id})}" class="btn btn-primary">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<div th:replace="layout :: common-js"></div>
+</body>
+</html>
